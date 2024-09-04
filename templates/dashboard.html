@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Job Tracker</title>
+
+    <!-- Materialize CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <!-- Custom CSS for additional styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card-action a {
+            background-color: #00796b;
+            border-radius: 5px;
+            padding: 10px 20px;
+        }
+        .card-action a:hover {
+            background-color: #004d40;
+        }
+        .header {
+            font-size: 2.5rem;
+            color: #00796b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="blue darken-2">
+            <div class="nav-wrapper container">
+                <a href="{{ url_for('dashboard') }}" class="brand-logo">Job Tracker</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="section">
+            <h2 class="header center-align">Welcome to Your Dashboard</h2>
+            <div class="row">
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-content center-align">
+                            <span class="card-title">View Job Applications</span>
+                            <p>Check all your job applications and track their status.</p>
+                        </div>
+                        <div class="card-action center-align">
+                            <a href="{{ url_for('list_jobs') }}" class="btn waves-effect waves-light">View Applications</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-content center-align">
+                            <span class="card-title">Add Job Application</span>
+                            <p>Add a new job application to your list and manage your career effectively.</p>
+                        </div>
+                        <div class="card-action center-align">
+                            <a href="{{ url_for('add_job') }}" class="btn waves-effect waves-light">Add Application</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer blue darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <p class="white-text center-align">&copy; 2024 Job Tracker. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Materialize JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

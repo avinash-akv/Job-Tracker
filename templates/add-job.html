@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Job Application - Job Tracker</title>
+
+    <!-- Materialize CSS CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
+    <!-- Custom CSS for additional styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0; /* Remove default margin */
+        }
+        main {
+            flex: 1;
+        }
+        .input-field label {
+            color: #0d47a1; /* Adjust label color */
+        }
+        .btn-custom {
+            background-color: #0d47a1;
+        }
+        .btn-custom:hover {
+            background-color: #1565c0;
+        }
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            padding-top: 20px; /* Adjust padding to give space above the footer content */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <nav class="blue darken-3">
+            <div class="nav-wrapper container">
+                <a href="{{ url_for('dashboard') }}" class="brand-logo">Job Tracker</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="{{ url_for('list_jobs') }}">View Job Applications</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="section">
+            <h3 class="center-align">Add Job Application</h3>
+            <div class="row">
+                <div class="col s12 m8 offset-m2">
+                    <div class="card z-depth-3">
+                        <div class="card-content">
+                            <form action="{{ url_for('add_job') }}" method="post">
+                                <div class="input-field">
+                                    <input type="text" id="company_name" name="company_name" required>
+                                    <label for="company_name">Company Name</label>
+                                </div>
+
+                                <div class="input-field">
+                                    <input type="text" id="job_role" name="job_role" required>
+                                    <label for="job_role">Job Role</label>
+                                </div>
+
+                                <div class="input-field">
+                                    <textarea id="job_description" name="job_description" class="materialize-textarea" required></textarea>
+                                    <label for="job_description">Job Description</label>
+                                </div>
+
+                                <div class="input-field">
+                                    <input type="text" id="location" name="location" required>
+                                    <label for="location">Location</label>
+                                </div>
+
+                                <div class="input-field">
+                                    <input type="text" id="credential_id" name="credential_id" required>
+                                    <label for="credential_id">Credential ID</label>
+                                </div>
+
+                                <div class="input-field">
+                                    <input type="password" id="credential_password" name="credential_password" required>
+                                    <label for="credential_password">Credential Password</label>
+                                </div>
+
+                                <p>
+                                    <label>
+                                        <input type="checkbox" id="applied" name="applied">
+                                        <span>Applied</span>
+                                    </label>
+                                </p>
+
+                                <div class="center-align">
+                                    <button type="submit" class="btn waves-effect waves-light btn-custom">Add Job Application</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer blue darken-2">
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <p class="white-text center-align">&copy; 2024 Job Tracker. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Materialize JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
