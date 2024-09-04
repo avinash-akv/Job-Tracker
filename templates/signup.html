@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +11,13 @@
 
     <!-- Custom CSS for additional styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        main {
-            flex: 1;
-        }
-    </style>
+
 </head>
+
 <body>
     <!-- Navbar -->
     <header>
-        <nav class="blue darken-2">
+        <nav class="teal darken-4">
             <div class="nav-wrapper container">
                 <a href="{{ url_for('dashboard') }}" class="brand-logo">Job Tracker</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -55,12 +48,14 @@
                                 <label for="confirm_password">Confirm Password</label>
                             </div>
                             <div class="center-align">
-                                <button type="submit" class="btn waves-effect waves-light blue darken-2">Sign Up</button>
+                                <button type="submit" class="btn waves-effect waves-light blue darken-2">Sign
+                                    Up</button>
                             </div>
                         </form>
                     </div>
                     <div class="card-action center-align">
-                        <p>Already have an account? <a href="{{ url_for('login') }}" class="blue-text text-darken-2">Login here</a>.</p>
+                        <p>Already have an account? <a href="{{ url_for('login') }}"
+                                class="blue-text text-darken-2">Login here</a>.</p>
                     </div>
                 </div>
             </div>
@@ -68,7 +63,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="page-footer blue darken-2">
+    <footer class="page-footer teal darken-4">
         <div class="container">
             <div class="row">
                 <div class="col s12">
@@ -81,4 +76,5 @@
     <!-- Materialize JS CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
+
 </html>

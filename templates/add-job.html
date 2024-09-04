@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,37 +11,13 @@
 
     <!-- Custom CSS for additional styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            margin: 0; /* Remove default margin */
-        }
-        main {
-            flex: 1;
-        }
-        .input-field label {
-            color: #0d47a1; /* Adjust label color */
-        }
-        .btn-custom {
-            background-color: #0d47a1;
-        }
-        .btn-custom:hover {
-            background-color: #1565c0;
-        }
-        footer {
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            padding-top: 20px; /* Adjust padding to give space above the footer content */
-        }
-    </style>
+
 </head>
+
 <body>
     <!-- Navbar -->
     <header>
-        <nav class="blue darken-3">
+        <nav class="teal darken-4">
             <div class="nav-wrapper container">
                 <a href="{{ url_for('dashboard') }}" class="brand-logo">Job Tracker</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -71,7 +48,8 @@
                                 </div>
 
                                 <div class="input-field">
-                                    <textarea id="job_description" name="job_description" class="materialize-textarea" required></textarea>
+                                    <textarea id="job_description" name="job_description" class="materialize-textarea"
+                                        required></textarea>
                                     <label for="job_description">Job Description</label>
                                 </div>
 
@@ -98,7 +76,8 @@
                                 </p>
 
                                 <div class="center-align">
-                                    <button type="submit" class="btn waves-effect waves-light btn-custom">Add Job Application</button>
+                                    <button type="submit" class="btn waves-effect waves-light btn-custom">Add Job
+                                        Application</button>
                                 </div>
                             </form>
                         </div>
@@ -109,7 +88,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="page-footer blue darken-2">
+    <footer class="page-footer teal darken-4">
         <div class="container">
             <div class="row">
                 <div class="col s12">
@@ -122,4 +101,5 @@
     <!-- Materialize JS CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
+
 </html>

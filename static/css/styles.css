@@ -1,182 +1,219 @@
-/* General Styles */
+/* General Body Styles */
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #C4DAD2;
     font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
     margin: 0;
+    padding: 0;
 }
 
-header {
-    margin-bottom: 2rem;
+main {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+/* Left-align content */
+.left-align {
+    text-align: left;
+    margin-top: 10%;
 }
 
 /* Navbar Styles */
 nav {
-    background-color: #00695c; /* Teal color */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.nav-wrapper {
-    padding: 0 1rem;
+    padding: 0 20px;
 }
 
 nav .brand-logo {
     font-size: 1.8rem;
-    font-weight: 700;
-    color: #ffffff;
+    font-weight: bold;   
 }
 
-nav a {
-    color: #ffffff;
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
 }
 
-nav a:hover {
-    color: #b2dfdb; /* Light teal color */
+nav ul li {
+    margin-right: 15px;
 }
 
-/* Header */
-header h1 {
-    text-align: center;
-    color: #333;
-    margin: 2rem 0;
+nav ul li a {
+    font-size: 1rem;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
 }
 
-/* Main Content */
-main {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+nav ul li a:hover {
+    border-radius: 5px;
 }
 
 /* Cards */
 .card {
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin-bottom: 20px;
+    margin-top: 20px;  
 }
 
-.card-content {
-    padding: 2rem;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 
 .card-title {
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    color: #00796b; /* Teal color */
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-/* Form Styles */
-.form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 60vh;
-}
-
-.form-box {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    max-width: 600px;
-    width: 100%;
-}
-
-.form-box h2 {
-    margin-bottom: 1.5rem;
-    color: #00796b; /* Teal color */
-}
-
-input[type="text"], input[type="password"], textarea {
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    width: 100%;
-}
-
-input:focus, textarea:focus {
-    border-color: #00796b;
-    box-shadow: 0 1px 0 0 #00796b;
-}
-
-/* Button Styles */
-button {
+.card-action a {
     background-color: #00796b;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.card-action a:hover {
+    background-color: #004d40;
+}
+
+/* Headers */
+.header, h2, h3 {
+    font-size: 2.5rem;
+    color: #005e53;
+    font-weight: bold;
+}
+
+.center-align {
+    text-align: center;
+}
+
+/* Forms */
+.input-field {
+    margin-bottom: 20px;
+}
+
+.input-field label {
+    color: #0d47a1;
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+    
+.input-field input[type="text"],
+.input-field input[type="password"],
+.input-field textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.input-field input[type="text"]:focus,
+.input-field input[type="password"]:focus,
+.input-field textarea:focus {
+    border-color: #1565c0;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 117, 255, 0.2);
+}
+
+/* Buttons */
+.btn-custom {
+    background-color: #0d47a1;
     color: white;
     border: none;
-    border-radius: 8px;
-    padding: 1rem 2rem;
-    font-size: 1rem;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease-in-out;
 }
 
-button:hover {
-    background-color: #004d40;
-    transform: translateY(-2px);
+.btn-custom:hover {
+    background-color: #1565c0;
+}
+
+.btn-small {    
+    font-size: 0.875rem;
+}
+
+.btn-small.red {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.btn-small.blue {
+    background-color: #0d47a1;
+    color: white;
+}
+
+.btn-small:hover {
+    opacity: 0.8;
+}
+
+/* Table Styles */
+table.striped {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+table.striped th,
+table.striped td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 1rem;
+    border-bottom: 1px solid #dddddd;
+}
+
+
+table.striped th {
+    background-color: #16423C;
+    color: white;
+}
+
+table.striped td {
+    color: #333;
+}
+
+table.striped tr:nth-child(even) {
+    background-color: #E9EFEC;
+}
+
+table.striped tr:hover {
+    background-color: #C4DAD2;
+}
+
+.highlight td:hover {
+    background-color: #6A9C89 !important;
+    color: white;
+}
+
+/* Table Responsive */
+.table-responsive {
+    overflow-x: auto;
+    margin-bottom: 15px;
+    border-radius: 10px;
 }
 
 /* Footer */
 footer {
-    background-color: #004d40; /* Darker teal color */
     color: white;
     text-align: center;
-
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
 
-/* Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem 0;
-}
-
-th, td {
-    padding: 1rem;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #00796b; /* Teal color */
-    color: white;
-}
-
-a.edit-button {
-    color: #00796b;
-    text-decoration: none;
-}
-
-a.edit-button:hover {
-    text-decoration: underline;
-}
-
-a.delete-button {
-    color: #d32f2f; /* Red color */
-    text-decoration: none;
-}
-
-a.delete-button:hover {
-    text-decoration: underline;
-}
-
-/* Responsive Design */
-@media (max-width: 600px) {
-    .nav-wrapper {
-        padding: 0 0.5rem;
-    }
-    
-    .form-box {
-        padding: 1rem;
-    }
-
-    button {
-        width: 100%;
-    }
+footer p {
+    margin: 0;
+    font-size: 1rem;
 }
