@@ -42,26 +42,24 @@
             <table class="striped highlight responsive-table centered">
                 <thead>
                     <tr>
+                        <th>S.No</th>
                         <th>Company Name</th>
                         <th>Job Role</th>
-                        <th>Job Description</th>
                         <th>Location</th>
-                        <th>Credential ID</th>
-                        <th>Credential Password</th>
-                        <th>Applied</th>
+                        <th>Apply Date</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for job in jobs %}
                     <tr>
+                        <td>{{ loop.index }}</td> <!-- Serial Number -->
                         <td>{{ job.company_name }}</td>
                         <td>{{ job.job_role }}</td>
-                        <td>{{ job.job_description }}</td>
                         <td>{{ job.location }}</td>
-                        <td>{{ job.credential_id }}</td>
-                        <td>{{ job.credential_password }}</td>
-                        <td>{{ job.applied }}</td>
+                        <td>{{ job.apply_date.strftime('%Y-%m-%d') if job.apply_date else 'N/A' }}</td> <!-- Apply Date -->
+                        <td>{{ job.status }}</td> <!-- Status -->
                         <td>
                             <a href="{{ url_for('edit_job', job_id=job.id) }}" class="btn-small waves-effect waves-light blue darken-2">Edit</a>
                             <a href="{{ url_for('delete_job', job_id=job.id) }}" class="btn-small waves-effect waves-light red darken-2"

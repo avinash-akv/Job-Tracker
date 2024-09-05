@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = '4b6ee2faa298463a9dff7af629c44ecf'  # Replace with a real secret key
@@ -26,7 +27,7 @@ def get_db_connection():
 class User(UserMixin):
     def __init__(self, user_id):
         self.id = user_id
-        self.username = None  # Added for username access
+        self.username = None
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -108,18 +109,18 @@ def add_job():
     if request.method == 'POST':
         company_name = request.form['company_name']
         job_role = request.form['job_role']
-        job_description = request.form['job_description']
         location = request.form['location']
-        credential_id = request.form['credential_id']
-        credential_password = request.form['credential_password']
-        applied = 'applied' in request.form
+        apply_date = request.form['apply_date'] or None
+        status = request.form['status']
 
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO job_applications (company_name, job_role, job_description, location, credential_id, credential_password, applied, user_id)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-        ''', (company_name, job_role, job_description, location, credential_id, credential_password, applied, current_user.id))
+            INSERT INTO job_applications 
+            (company_name, job_role, location, apply_date, status, user_id)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        ''', (company_name, job_role, location, 
+              datetime.strptime(apply_date, '%Y-%m-%d') if apply_date else None, status, current_user.id))
         conn.commit()
         cursor.close()
         conn.close()
@@ -155,18 +156,16 @@ def edit_job(job_id):
     if request.method == 'POST':
         company_name = request.form['company_name']
         job_role = request.form['job_role']
-        job_description = request.form['job_description']
         location = request.form['location']
-        credential_id = request.form['credential_id']
-        credential_password = request.form['credential_password']
-        applied = 'applied' in request.form
+        apply_date = request.form['apply_date'] or None
+        status = request.form['status']
 
         cursor.execute('''
             UPDATE job_applications
-            SET company_name = %s, job_role = %s, job_description = %s, location = %s,
-                credential_id = %s, credential_password = %s, applied = %s
+            SET company_name = %s, job_role = %s, location = %s, apply_date = %s, status = %s
             WHERE id = %s AND user_id = %s
-        ''', (company_name, job_role, job_description, location, credential_id, credential_password, applied, job_id, current_user.id))
+        ''', (company_name, job_role, location, 
+              datetime.strptime(apply_date, '%Y-%m-%d') if apply_date else None, status, job_id, current_user.id))
         conn.commit()
         cursor.close()
         conn.close()

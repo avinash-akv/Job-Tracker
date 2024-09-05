@@ -53,31 +53,24 @@
                                 </div>
 
                                 <div class="input-field">
-                                    <textarea id="job_description" name="job_description" class="materialize-textarea" required></textarea>
-                                    <label for="job_description">Job Description</label>
-                                </div>
-
-                                <div class="input-field">
                                     <input type="text" id="location" name="location" required>
                                     <label for="location">Location</label>
                                 </div>
 
                                 <div class="input-field">
-                                    <input type="text" id="credential_id" name="credential_id" required>
-                                    <label for="credential_id">Credential ID</label>
+                                    <input type="date" id="apply_date" name="apply_date">
+                                    <label for="apply_date">Apply Date</label>
                                 </div>
 
                                 <div class="input-field">
-                                    <input type="password" id="credential_password" name="credential_password" required>
-                                    <label for="credential_password">Credential Password</label>
+                                    <select id="status" name="status">
+                                        <option value="" disabled selected>Choose Status</option>
+                                        <option value="Applied">Applied</option>
+                                        <option value="Interview">Interview</option>
+                                        <option value="Rejected">Rejected</option>
+                                    </select>
+                                    <label for="status">Status</label>
                                 </div>
-
-                                <p>
-                                    <label>
-                                        <input type="checkbox" id="applied" name="applied">
-                                        <span>Applied</span>
-                                    </label>
-                                </p>
 
                                 <div class="center-align">
                                     <button type="submit" class="btn waves-effect waves-light teal darken-2">Add Job Application</button>
@@ -107,6 +100,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.dropdown-trigger');
             M.Dropdown.init(elems, { hover: false, coverTrigger: false });
+
+            var elemsSelect = document.querySelectorAll('select');
+            M.FormSelect.init(elemsSelect);
         });
     </script>
 </body>
