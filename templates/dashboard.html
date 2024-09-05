@@ -20,10 +20,21 @@
             <div class="nav-wrapper container">
                 <a href="{{ url_for('dashboard') }}" class="brand-logo">Job Tracker</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                    <!-- Dropdown Trigger -->
+                    <li>
+                        <a class="dropdown-trigger" href="#" data-target="dropdown1">{{ current_user.username }}</a>
+                    </li>
                 </ul>
             </div>
         </nav>
+
+        <!-- Dropdown Structure -->
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a href="{{ url_for('profile') }}">Profile</a></li>
+            <li><a href="{{ url_for('change_password') }}">Change Password</a></li>
+            <li class="divider"></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        </ul>
     </header>
 
     <!-- Main Content -->
@@ -40,8 +51,7 @@
                             <p>Check all your job applications and track their status.</p>
                         </div>
                         <div class="card-action center-align">
-                            <a href="{{ url_for('list_jobs') }}" class="btn waves-effect waves-light">View
-                                Applications</a>
+                            <a href="{{ url_for('list_jobs') }}" class="btn waves-effect waves-light">View Applications</a>
                         </div>
                     </div>
                 </div>
@@ -73,6 +83,14 @@
 
     <!-- Materialize JS CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.dropdown-trigger');
+            M.Dropdown.init(elems, {
+                coverTrigger: false
+            });
+        });
+    </script>
 </body>
 
 </html>

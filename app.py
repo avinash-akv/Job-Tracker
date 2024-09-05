@@ -18,7 +18,7 @@ def get_db_connection():
         user='root',
         password='Avinash@4521',
         database='job_applications_db',
-        port = 3306
+        port=3306
     )
     return conn
 
@@ -26,10 +26,21 @@ def get_db_connection():
 class User(UserMixin):
     def __init__(self, user_id):
         self.id = user_id
+        self.username = None  # Added for username access
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User(user_id)
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute('SELECT id, username FROM users WHERE id = %s', (user_id,))
+    user = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    if user:
+        user_obj = User(user['id'])
+        user_obj.username = user['username']
+        return user_obj
+    return None
 
 # Index page
 @app.route('/')
@@ -180,6 +191,44 @@ def delete_job(job_id):
 
     flash('Job application deleted successfully!')
     return redirect(url_for('list_jobs'))
+
+# Profile page (Protected)
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html')
+
+# Change password page (Protected)
+@app.route('/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    if request.method == 'POST':
+        current_password = request.form['current_password']
+        new_password = request.form['new_password']
+        confirm_password = request.form['confirm_password']
+
+        if new_password != confirm_password:
+            flash('Passwords do not match.')
+            return redirect(url_for('change_password'))
+
+        conn = get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute('SELECT * FROM users WHERE id = %s', (current_user.id,))
+        user = cursor.fetchone()
+
+        if user and check_password_hash(user['password'], current_password):
+            hashed_new_password = generate_password_hash(new_password)
+            cursor.execute('UPDATE users SET password = %s WHERE id = %s', (hashed_new_password, current_user.id))
+            conn.commit()
+            flash('Password changed successfully!')
+            return redirect(url_for('dashboard'))
+        else:
+            flash('Current password is incorrect.')
+
+        cursor.close()
+        conn.close()
+
+    return render_template('change_password.html')
 
 # Logout route
 @app.route('/logout')

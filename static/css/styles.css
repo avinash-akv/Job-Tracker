@@ -103,10 +103,10 @@ nav ul li a:hover {
 }
 
 .input-field label {
-    color: #0d47a1;
     display: block;
     margin-bottom: 5px;
     margin-left: 5px;
+    color: #16423C;
 }
     
 .input-field input[type="text"],
@@ -117,6 +117,8 @@ nav ul li a:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
+    background-color: #f9f9f9;
+
 }
 
 .input-field input[type="text"]:focus,
@@ -125,6 +127,15 @@ nav ul li a:hover {
     border-color: #1565c0;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 117, 255, 0.2);
+}
+
+a.white-text {
+    transition: color 0.3s ease;
+    padding: 5px;
+}
+
+a.teal-text:hover {
+    color: #ffffff;
 }
 
 /* Buttons */
@@ -217,3 +228,4 @@ footer p {
     margin: 0;
     font-size: 1rem;
 }
+
