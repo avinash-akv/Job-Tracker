@@ -11,7 +11,7 @@ A full-stack web application for tracking job applications, built using Flask , 
 
 ## Technologies Used
 
-- **Frontend**: React.js, Tailwind CSS
+- **Frontend**: Html, Css, JavaScript
 - **Backend**: Flask
 - **Database**: MySQL
 - **Authentication**: `flask_login`, `werkzeug.security`
