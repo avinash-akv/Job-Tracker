@@ -237,3 +237,43 @@ footer p {
     font-size: 1rem;
 }
 
+
+
+/* Dropdown Menu Styles */
+.dropdown-content {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content li a {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.dropdown-content li a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Search Form Styles */
+.search-form .input-field input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+.search-form .input-field input[type="text"]:focus {
+    border-color: #00796b;
+    box-shadow: 0 0 5px rgba(0, 121, 107, 0.2);
+    outline: none;
+}
+
+.search-form .btn {
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.search-form .btn:hover {
+    background-color: #004d40;
+}

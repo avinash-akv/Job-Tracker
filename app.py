@@ -125,16 +125,25 @@ def add_job():
         cursor.close()
         conn.close()
 
+        flash('Job application added successfully!')
         return redirect(url_for('list_jobs'))
     return render_template('add-job.html')
 
 # List job applications (Protected)
-@app.route('/jobs')
+@app.route('/jobs', methods=['GET'])
 @login_required
 def list_jobs():
+    keyword = request.args.get('keyword', '')
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute('SELECT * FROM job_applications WHERE user_id = %s', (current_user.id,))
+    cursor.execute('''
+        SELECT * FROM job_applications 
+        WHERE user_id = %s AND (
+            company_name LIKE %s OR 
+            job_role LIKE %s OR 
+            location LIKE %s
+        )
+    ''', (current_user.id, f'%{keyword}%', f'%{keyword}%', f'%{keyword}%'))
     jobs = cursor.fetchall()
     cursor.close()
     conn.close()

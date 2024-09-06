@@ -37,8 +37,21 @@
     <main class="container">
         <h2 class="header center-align">Job Applications Details</h2>
 
+        <!-- Search Form -->
+        <div class="row search-form">
+            <form action="{{ url_for('list_jobs') }}" method="get">
+                <div class="input-field col s12 m8 l4">
+                    <input id="search" type="text" name="keyword" placeholder="Search by company, job role, or location">
+                    <label for="search">Search</label>
+                </div>
+                <div class="input-field col s12 m4 l2">
+                    <button type="submit" class="btn teal darken-4 waves-effect waves-light">Search</button>
+                </div>
+            </form>
+        </div>
+
         <!-- Responsive Table -->
-        <div class="table-responsive">
+        <div class="table-container">
             <table class="striped highlight responsive-table centered">
                 <thead>
                     <tr>
@@ -54,12 +67,12 @@
                 <tbody>
                     {% for job in jobs %}
                     <tr>
-                        <td>{{ loop.index }}</td> <!-- Serial Number -->
+                        <td>{{ loop.index }}</td>
                         <td>{{ job.company_name }}</td>
                         <td>{{ job.job_role }}</td>
                         <td>{{ job.location }}</td>
-                        <td>{{ job.apply_date.strftime('%Y-%m-%d') if job.apply_date else 'N/A' }}</td> <!-- Apply Date -->
-                        <td>{{ job.status }}</td> <!-- Status -->
+                        <td>{{ job.apply_date.strftime('%Y-%m-%d') if job.apply_date else 'N/A' }}</td>
+                        <td>{{ job.status }}</td>
                         <td>
                             <a href="{{ url_for('edit_job', job_id=job.id) }}" class="btn-small waves-effect waves-light blue darken-2">Edit</a>
                             <a href="{{ url_for('delete_job', job_id=job.id) }}" class="btn-small waves-effect waves-light red darken-2"
@@ -86,7 +99,8 @@
     <!-- Materialize JS CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize dropdown
             var elems = document.querySelectorAll('.dropdown-trigger');
             M.Dropdown.init(elems, { hover: false, coverTrigger: false });
         });
