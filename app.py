@@ -66,7 +66,7 @@ def login():
             login_user(User(user['id']))
             return redirect(url_for('dashboard'))
         else:
-            flash('Invalid credentials, please try again.')
+            flash('Invalid username or password. Please try again.', 'error')
 
     return render_template('login.html')
 
@@ -79,7 +79,7 @@ def signup():
         confirm_password = request.form['confirm_password']
 
         if password != confirm_password:
-            flash('Passwords do not match.')
+            flash('Passwords do not match.', 'error')
             return redirect(url_for('signup'))
 
         hashed_password = generate_password_hash(password)
@@ -91,7 +91,7 @@ def signup():
         cursor.close()
         conn.close()
 
-        flash('Signup successful! You can now log in.')
+        flash('Signup successful! You can now log in.', 'success')
         return redirect(url_for('login'))
 
     return render_template('signup.html')
@@ -125,7 +125,7 @@ def add_job():
         cursor.close()
         conn.close()
 
-        flash('Job application added successfully!')
+        flash('Job application added successfully!', 'success')
         return redirect(url_for('list_jobs'))
     return render_template('add-job.html')
 
@@ -159,7 +159,7 @@ def edit_job(job_id):
     job = cursor.fetchone()
 
     if job is None:
-        flash('Job application not found.')
+        flash('Job application not found.', 'error')
         return redirect(url_for('list_jobs'))
 
     if request.method == 'POST':
@@ -179,7 +179,7 @@ def edit_job(job_id):
         cursor.close()
         conn.close()
 
-        flash('Job application updated successfully!')
+        flash('Job application updated successfully!', 'success')
         return redirect(url_for('list_jobs'))
 
     cursor.close()
@@ -197,7 +197,7 @@ def delete_job(job_id):
     cursor.close()
     conn.close()
 
-    flash('Job application deleted successfully!')
+    flash('Job application deleted successfully!', 'success')
     return redirect(url_for('list_jobs'))
 
 # Profile page (Protected)
@@ -216,7 +216,7 @@ def change_password():
         confirm_password = request.form['confirm_password']
 
         if new_password != confirm_password:
-            flash('Passwords do not match.')
+            flash('Passwords do not match.', 'error')
             return redirect(url_for('change_password'))
 
         conn = get_db_connection()
@@ -228,10 +228,10 @@ def change_password():
             hashed_new_password = generate_password_hash(new_password)
             cursor.execute('UPDATE users SET password = %s WHERE id = %s', (hashed_new_password, current_user.id))
             conn.commit()
-            flash('Password changed successfully!')
+            flash('Password changed successfully!', 'success')
             return redirect(url_for('dashboard'))
         else:
-            flash('Current password is incorrect.')
+            flash('Current password is incorrect.', 'error')
 
         cursor.close()
         conn.close()
@@ -243,6 +243,7 @@ def change_password():
 @login_required
 def logout():
     logout_user()
+    flash('You have been logged out.', 'info')
     return redirect(url_for('index'))
 
 if __name__ == '__main__':

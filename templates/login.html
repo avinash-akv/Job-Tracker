@@ -11,7 +11,6 @@
 
     <!-- Custom CSS for additional styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-
 </head>
 
 <body>
@@ -34,6 +33,20 @@
                 <div class="card z-depth-3">
                     <div class="card-content">
                         <h4 class="center-align teal-text text-darken-4">Login</h4>
+                        
+                        <!-- Display flash messages -->
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                <div class="flash-messages">
+                                    {% for category, message in messages %}
+                                        <div class="card-panel {{ category }}">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endwith %}
+                        
                         <form action="{{ url_for('login') }}" method="post">
                             <div class="input-field">
                                 <input type="text" id="username" name="username" required>
@@ -49,7 +62,7 @@
                         </form>
                     </div>
                     <div class="card-action center-align">
-                        <p>Don't have an account? <a href="{{ url_for('signup') }}" class="white-text">Sign up</a>.</p>
+                        <p>Don't have an account? <a href="{{ url_for('signup') }}" class="teal-text">Sign up</a>.</p>
                     </div>
                 </div>
             </div>
