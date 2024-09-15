@@ -22,7 +22,7 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('list_jobs') }}">View Job Applications</a></li>
                     <li><a href="{{ url_for('add_job') }}">Add Job Application</a></li>
-                    <li><a href="#" class="dropdown-trigger" data-target="dropdown1">{{ current_user.username }}</a></li>
+                    <li><a href="#" class="dropdown-trigger" data-target="dropdown1">{{ current_user.name }}</a></li>
                 </ul>
                 <ul id="dropdown1" class="dropdown-content">
                     <li><a href="{{ url_for('profile') }}">Profile</a></li>
@@ -99,8 +99,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            M.Dropdown.init(elems, { hover: false, coverTrigger: false });
+            var elemsDropdown = document.querySelectorAll('.dropdown-trigger');
+            M.Dropdown.init(elemsDropdown, { hover: false, coverTrigger: false });
 
             var elemsSelect = document.querySelectorAll('select');
             M.FormSelect.init(elemsSelect);

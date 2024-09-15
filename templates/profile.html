@@ -20,7 +20,7 @@
             <div class="nav-wrapper container">
                 <a href="{{ url_for('dashboard') }}" class="brand-logo">Job Tracker</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#" class="dropdown-trigger" data-target="dropdown1">{{ current_user.username }}</a></li>
+                    <li><a href="#" class="dropdown-trigger waves-effect waves-light" data-target="dropdown1">{{ current_user.name }}</a></li>
                 </ul>
                 <ul id="dropdown1" class="dropdown-content">
                     <li><a href="{{ url_for('profile') }}">Profile</a></li>
@@ -38,10 +38,13 @@
             <h2 class="header center-align">Profile</h2>
             <div class="row">
                 <div class="col s12 m8 l6 offset-m2 offset-l3">
-                    <div class="card z-depth-3">
+                    <div class="card z-depth-3 profile-card">
                         <div class="card-content">
                             <span class="card-title">User Information</span>
-                            <p><strong>Username:</strong> {{ current_user.username }}</p>
+                            <div class="user-info">
+                                <p><strong>Name:</strong> {{ current_user.name }}</p>
+                                <p><strong>Email:</strong> {{ current_user.email }}</p>
+                            </div>
                         </div>
                         <div class="card-action center-align">
                             <a href="{{ url_for('change_password') }}" class="btn waves-effect waves-light teal darken-2">Change Password</a>
@@ -68,8 +71,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            M.Dropdown.init(elems, { hover: false, coverTrigger: false });
+            // Initialize dropdown
+            var elemsDropdown = document.querySelectorAll('.dropdown-trigger');
+            M.Dropdown.init(elemsDropdown, { hover: false, coverTrigger: false });
         });
     </script>
 </body>

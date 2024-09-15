@@ -14,21 +14,15 @@ main {
     padding: 20px;
 }
 
-/* Left-align content */
-.left-align {
-    text-align: left;
-    margin-top: 10%;
-}
-
 /* Navbar Styles */
 nav {
     padding: 0 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav .brand-logo {
     font-size: 1.8rem;
-    font-weight: bold;   
+    font-weight: bold;
     color: #fff;
 }
 
@@ -38,7 +32,6 @@ nav ul {
     padding: 0;
     display: flex;
     align-items: center;
-
 }
 
 nav ul li {
@@ -54,8 +47,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    border-radius: 5px;
-    color: #e0f2f1; /* Light text color for contrast */
+    color: #e0f2f1;
 }
 
 /* Cards */
@@ -64,7 +56,6 @@ nav ul li a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 20px;
-    margin-top: 20px;  
 }
 
 .card:hover {
@@ -72,77 +63,48 @@ nav ul li a:hover {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-
 .card-title {
     font-size: 1.6rem;
     font-weight: bold;
 }
 
-.card-action a {
-    background-color: #00796b;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-.card-action a:hover {
-    background-color: #004d40;
-}
-
-/* Headers */
-.header, h2, h3 {
-    font-size: 2.5rem;
-    color: #005e53;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-.center-align {
-    text-align: center;
-}
-
-/* Forms */
-.input-field {
-    margin-bottom: 20px;
-}
-
-.input-field label {
-    display: block;
-    margin-bottom: 5px;
-    margin-left: 5px;
+/* Profile Page Styles */
+.profile-info {
+    font-size: 1.2rem;
     color: #004d40;
 }
-    
-.input-field input[type="text"],
-.input-field input[type="password"],
-.input-field textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: #fafafa;
-    box-sizing: border-box;
 
+.profile-info strong {
+    font-weight: bold;
 }
 
-.input-field input[type="text"]:focus,
-.input-field input[type="password"]:focus,
-.input-field textarea:focus {
-    border-color: #1565c0;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 117, 255, 0.2);
+.profile-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
-a.white-text {
-    transition: color 0.3s ease;
-    padding: 5px;
+.profile-card {
+    background-color: #f9f9f9; /* Light background for the card */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
 
-a.teal-text:hover {
-    color: #ffffff;
+.user-info {
+    padding: 20px; /* Add padding around the user info */
+    background-color: #ffffff; /* White background for better readability */
+    border-radius: 5px; /* Slightly rounded corners for the info section */
+    margin-bottom: 10px; /* Margin at the bottom */
+}
+
+.user-info p {
+    margin: 10px 0; /* Spacing between paragraphs */
+    font-size: 16px; /* Adjust font size */
+    color: #333; /* Dark text color for readability */
+}
+
+.user-info strong {
+    color: #333; /* Dark color for labels */
 }
 
 /* Buttons */
@@ -159,22 +121,32 @@ a.teal-text:hover {
     background-color: #004d40;
 }
 
-.btn-small {    
-    font-size: 0.875rem;
-}
-
-.btn-small.red {
-    background-color: #d32f2f;
+/* Footer */
+footer {
+    background-color: #004d40;
     color: white;
+    text-align: center;
+    width: 100%;
 }
 
-.btn-small.blue {
-    background-color: #00796b;
-    color: white;
+footer p {
+    margin: 0;
+    font-size: 1rem;
 }
 
-.btn-small:hover {
-    opacity: 0.8;
+/* Dropdown Menu Styles */
+.dropdown-content {
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content li a {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.dropdown-content li a:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Table Styles */
@@ -193,7 +165,6 @@ table.striped td {
     font-size: 1rem;
     border-bottom: 1px solid #ddd;
 }
-
 
 table.striped th {
     background-color: #004d40;
@@ -222,72 +193,4 @@ table.striped tr:hover {
     overflow-x: auto;
     margin-bottom: 15px;
     border-radius: 10px;
-}
-
-/* Footer */
-footer {
-    background-color: #004d40;
-    color: white;
-    text-align: center;
-    width: 100%;
-}
-
-footer p {
-    margin: 0;
-    font-size: 1rem;
-}
-
-
-
-/* Dropdown Menu Styles */
-.dropdown-content {
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.dropdown-content li a {
-    font-size: 1rem;
-    text-align: center;
-}
-
-.dropdown-content li a:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-/* Search Form Styles */
-.search-form .input-field input[type="text"] {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 1rem;
-    background-color: #f9f9f9;
-}
-
-.search-form .input-field input[type="text"]:focus {
-    border-color: #00796b;
-    box-shadow: 0 0 5px rgba(0, 121, 107, 0.2);
-    outline: none;
-}
-
-.search-form .btn {
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.search-form .btn:hover {
-    background-color: #004d40;
-}
-
-
-/* Flash message styles */
-.card-panel.error {
-    background-color: #ff4d4d; /* Red color for errors */
-}
-
-.card-panel.success {
-    background-color: #4caf50; /* Green color for success */
-}
-
-.card-panel.info {
-    background-color: #2196f3; /* Blue color for informational messages */
 }

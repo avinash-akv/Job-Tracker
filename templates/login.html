@@ -39,7 +39,7 @@
                             {% if messages %}
                                 <div class="flash-messages">
                                     {% for category, message in messages %}
-                                        <div class="card-panel {{ category }}">
+                                        <div class="card-panel {{ 'green lighten-4 green-text' if category == 'success' else 'red lighten-4 red-text' }}">
                                             {{ message }}
                                         </div>
                                     {% endfor %}

@@ -25,21 +25,21 @@ def get_db_connection():
 
 # User class
 class User(UserMixin):
-    def __init__(self, user_id):
+    def __init__(self, user_id, name, email):
         self.id = user_id
-        self.username = None
+        self.name = name
+        self.email = email
 
 @login_manager.user_loader
 def load_user(user_id):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute('SELECT id, username FROM users WHERE id = %s', (user_id,))
+    cursor.execute('SELECT id, username, name, email FROM users WHERE id = %s', (user_id,))
     user = cursor.fetchone()
     cursor.close()
     conn.close()
     if user:
-        user_obj = User(user['id'])
-        user_obj.username = user['username']
+        user_obj = User(user['id'], user['name'], user['email'])
         return user_obj
     return None
 
@@ -63,7 +63,7 @@ def login():
         conn.close()
 
         if user and check_password_hash(user['password'], password):
-            login_user(User(user['id']))
+            login_user(User(user['id'], user['name'], user['email']))
             return redirect(url_for('dashboard'))
         else:
             flash('Invalid username or password. Please try again.', 'error')
@@ -74,6 +74,8 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
         username = request.form['username']
         password = request.form['password']
         confirm_password = request.form['confirm_password']
@@ -86,7 +88,8 @@ def signup():
 
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute('INSERT INTO users (username, password) VALUES (%s, %s)', (username, hashed_password))
+        cursor.execute('INSERT INTO users (name, email, username, password) VALUES (%s, %s, %s, %s)', 
+                       (name, email, username, hashed_password))
         conn.commit()
         cursor.close()
         conn.close()
@@ -115,7 +118,7 @@ def add_job():
 
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute('''
+        cursor.execute(''' 
             INSERT INTO job_applications 
             (company_name, job_role, location, apply_date, status, user_id)
             VALUES (%s, %s, %s, %s, %s, %s)
@@ -136,7 +139,7 @@ def list_jobs():
     keyword = request.args.get('keyword', '')
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute('''
+    cursor.execute(''' 
         SELECT * FROM job_applications 
         WHERE user_id = %s AND (
             company_name LIKE %s OR 
@@ -169,7 +172,7 @@ def edit_job(job_id):
         apply_date = request.form['apply_date'] or None
         status = request.form['status']
 
-        cursor.execute('''
+        cursor.execute(''' 
             UPDATE job_applications
             SET company_name = %s, job_role = %s, location = %s, apply_date = %s, status = %s
             WHERE id = %s AND user_id = %s
@@ -201,10 +204,25 @@ def delete_job(job_id):
     return redirect(url_for('list_jobs'))
 
 # Profile page (Protected)
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    return render_template('profile.html')
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute('UPDATE users SET name = %s, email = %s WHERE id = %s', (name, email, current_user.id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        current_user.name = name  # Update current_user's name in session
+        current_user.email = email  # Update current_user's email in session
+        flash('Profile updated successfully!', 'success')
+
+    return render_template('profile.html', user=current_user)
 
 # Change password page (Protected)
 @app.route('/change_password', methods=['GET', 'POST'])

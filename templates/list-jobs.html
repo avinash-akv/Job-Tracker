@@ -21,7 +21,7 @@
                 <a href="{{ url_for('dashboard') }}" class="brand-logo">Job Tracker</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="{{ url_for('add_job') }}" class="waves-effect waves-light">Add Job Application</a></li>
-                    <li><a href="#" class="dropdown-trigger waves-effect waves-light" data-target="dropdown1">{{ current_user.username }}</a></li>
+                    <li><a href="#" class="dropdown-trigger waves-effect waves-light" data-target="dropdown1">{{ current_user.name }}</a></li>
                 </ul>
                 <ul id="dropdown1" class="dropdown-content">
                     <li><a href="{{ url_for('profile') }}">Profile</a></li>
@@ -42,7 +42,6 @@
             <form action="{{ url_for('list_jobs') }}" method="get">
                 <div class="input-field col s12 m8 l4">
                     <input id="search" type="text" name="keyword" placeholder="Search by company, job role, or location">
-                    <label for="search">Search</label>
                 </div>
                 <div class="input-field col s12 m4 l2">
                     <button type="submit" class="btn teal darken-4 waves-effect waves-light">Search</button>
@@ -101,8 +100,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize dropdown
-            var elems = document.querySelectorAll('.dropdown-trigger');
-            M.Dropdown.init(elems, { hover: false, coverTrigger: false });
+            var elemsDropdown = document.querySelectorAll('.dropdown-trigger');
+            M.Dropdown.init(elemsDropdown, { hover: false, coverTrigger: false });
         });
     </script>
 </body>
