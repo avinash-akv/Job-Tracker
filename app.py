@@ -46,7 +46,7 @@ def load_user(user_id):
 # Index page
 @app.route('/')
 def index():
-    return "Hello, world!"  # Updated as per the minimal example
+    return render_template('index.html')
 
 # Login page
 @app.route('/login', methods=['GET', 'POST'])
